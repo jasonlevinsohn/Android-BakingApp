@@ -1,12 +1,19 @@
 package com.llamasontheloosefarm.bakingapp2;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.facebook.stetho.Stetho;
 import com.llamasontheloosefarm.bakingapp2.data.Recipe;
+import com.llamasontheloosefarm.bakingapp2.data.RecipeIngredient;
 import com.llamasontheloosefarm.bakingapp2.utilities.NetworkUtils;
 import com.llamasontheloosefarm.bakingapp2.utilities.RecipeJSONUtils;
 
@@ -21,6 +28,7 @@ public class RecipeListActivity extends AppCompatActivity {
 
     private RecipeGridAdapter recipeGridAdapter;
     private GridView gridView;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +36,7 @@ public class RecipeListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recipe_list);
 
         gridView = (GridView) findViewById(R.id.recipe_list_grid_view);
+        progressBar = (ProgressBar) findViewById(R.id.pb_loading_indicator);
 
         new FetchRecipeTask().execute();
 
@@ -48,10 +57,42 @@ public class RecipeListActivity extends AppCompatActivity {
             recipeArrayList = new ArrayList<Recipe>(Arrays.asList(recipeData));
             recipeGridAdapter = new RecipeGridAdapter(RecipeListActivity.this, recipeArrayList);
             gridView.setAdapter(recipeGridAdapter);
+            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Recipe recipe = recipeArrayList.get(i);
+                    Timber.d("Clicked on Recipe: %s", recipe.getName());
+                    RecipeIngredient[] ingreds = recipe.getIngredients();
+
+                    for (int j = 0; j < ingreds.length; j++) {
+                        Timber.d("Ingredient: %s", ingreds[j].getIngredient());
+
+                    }
+
+                    Context context = RecipeListActivity.this;
+                    Class dest = RecipeDetailListActivity.class;
+
+                    Intent recipeDetailListIntent = new Intent(context, dest);
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable("recipe", recipe);
+                    bundle.putParcelableArray("ingredients", ingreds);
+//                    recipeDetailListIntent.putExtra("recipe", recipe);
+                    recipeDetailListIntent.putExtras(bundle);
+
+                    startActivity(recipeDetailListIntent);
+                }
+            });
         }
     }
 
     public class FetchRecipeTask extends AsyncTask<String, Void, Recipe[]> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressBar.setVisibility(View.VISIBLE);
+            gridView.setVisibility(View.INVISIBLE);
+        }
 
         @Override
         protected Recipe[] doInBackground(String... strings) {
@@ -77,6 +118,9 @@ public class RecipeListActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Recipe[] recipes) {
+
+            progressBar.setVisibility(View.INVISIBLE);
+            gridView.setVisibility(View.VISIBLE);
 
             populateRecipeList(recipes);
 

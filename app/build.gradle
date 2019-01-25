@@ -36,4 +36,10 @@ dependencies {
 
     // Timber Logging Library
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    // Recycler View
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+
+
+    //
 }

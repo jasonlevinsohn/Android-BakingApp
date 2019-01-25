@@ -7,12 +7,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.llamasontheloosefarm.bakingapp2.data.Recipe;
+import com.llamasontheloosefarm.bakingapp2.data.RecipeIngredient;
+
+import java.sql.Array;
 
 public final class RecipeJSONUtils {
 
     public static Recipe[] getRecipesFromJSON(Context context, String recipeJSON) throws JSONException {
 
         final String RECIPES_STATUS_CODE = "cod";
+        final String INGREDIENTS_LIST = "ingredients";
+        final String STEPS_LIST = "steps";
+
 
         final String RECIPE_ID = "id";
         final String RECIPE_NAME = "name";
@@ -20,6 +26,10 @@ public final class RecipeJSONUtils {
         final String RECIPE_SERVINGS = "servings";
         final String RECIPE_INGREDIENTS = "ingredients";
         final String RECIPE_STEPS = "steps";
+
+        final String INGREDIENT_QUANTITY = "quantity";
+        final String INGREDIENT_MEASURE = "measure";
+        final String INGREDIENT_INGREDIENT = "ingredient";
 
         Recipe[] parsedRecipeData = null;
 
@@ -46,7 +56,22 @@ public final class RecipeJSONUtils {
             int recipeId = recipeObj.getInt(RECIPE_ID);
             String recipeName = recipeObj.getString(RECIPE_NAME);
 
-            Recipe recipe = new Recipe(recipeId, recipeName);
+            // Get Ingredients
+            JSONArray ingredientsJSONArray = recipeObj.getJSONArray(INGREDIENTS_LIST);
+            RecipeIngredient[] ingredients = new RecipeIngredient[ingredientsJSONArray.length()];
+
+            for (int j = 0; j < ingredientsJSONArray.length(); j++) {
+                RecipeIngredient ingredient;
+                JSONObject ingredientJSON = ingredientsJSONArray.getJSONObject(j);
+                int quantity = ingredientJSON.getInt(INGREDIENT_QUANTITY);
+                String measure = ingredientJSON.getString(INGREDIENT_MEASURE);
+                String ingred = ingredientJSON.getString(INGREDIENT_INGREDIENT);
+
+                ingredient = new RecipeIngredient(quantity, measure, ingred);
+                ingredients[j] = ingredient;
+            }
+
+            Recipe recipe = new Recipe(recipeId, recipeName, ingredients);
 
             parsedRecipeData[i] = recipe;
 
