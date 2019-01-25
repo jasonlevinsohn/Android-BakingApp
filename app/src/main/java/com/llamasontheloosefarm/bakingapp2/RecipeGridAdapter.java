@@ -13,6 +13,7 @@ import com.llamasontheloosefarm.bakingapp2.data.Recipe;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
 import timber.log.Timber;
 
 public class RecipeGridAdapter extends ArrayAdapter<Recipe> {

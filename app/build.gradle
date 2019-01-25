@@ -41,5 +41,12 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:27.1.1'
 
 
-    //
+    // Getting compile errors when trying to implement these.
+    // Butterknife for Binding and what not
+    // These require API version 28
+//    implementation 'com.jakewharton:butterknife:10.0.0'
+//    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
+    implementation 'com.jakewharton:butterknife:8.4.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+
 }

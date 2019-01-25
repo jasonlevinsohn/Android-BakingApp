@@ -21,22 +21,27 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import timber.log.Timber;
 
 
 public class RecipeListActivity extends AppCompatActivity {
 
     private RecipeGridAdapter recipeGridAdapter;
-    private GridView gridView;
-    private ProgressBar progressBar;
+//    private GridView gridView;
+//    private ProgressBar progressBar;
+    @BindView(R.id.recipe_list_grid_view) GridView gridView;
+    @BindView(R.id.pb_loading_indicator) ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_list);
+        ButterKnife.bind(this);
 
-        gridView = (GridView) findViewById(R.id.recipe_list_grid_view);
-        progressBar = (ProgressBar) findViewById(R.id.pb_loading_indicator);
+//        gridView = (GridView) findViewById(R.id.recipe_list_grid_view);
+//        progressBar = (ProgressBar) findViewById(R.id.pb_loading_indicator);
 
         new FetchRecipeTask().execute();
 
