@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.facebook.stetho.Stetho;
 import com.llamasontheloosefarm.bakingapp2.data.Recipe;
 import com.llamasontheloosefarm.bakingapp2.data.RecipeIngredient;
+import com.llamasontheloosefarm.bakingapp2.data.RecipeStep;
 import com.llamasontheloosefarm.bakingapp2.utilities.NetworkUtils;
 import com.llamasontheloosefarm.bakingapp2.utilities.RecipeJSONUtils;
 
@@ -68,10 +69,17 @@ public class RecipeListActivity extends AppCompatActivity {
                     Recipe recipe = recipeArrayList.get(i);
                     Timber.d("Clicked on Recipe: %s", recipe.getName());
                     RecipeIngredient[] ingreds = recipe.getIngredients();
+                    RecipeStep[] steps = recipe.getSteps();
 
                     for (int j = 0; j < ingreds.length; j++) {
                         Timber.d("Ingredient: %s", ingreds[j].getIngredient());
 
+                    }
+
+                    if (steps != null) {
+                        for (int j = 0; j < steps.length; j++) {
+                            Timber.d("Steps: %s", steps[j].getDescription());
+                        }
                     }
 
                     Context context = RecipeListActivity.this;
@@ -81,6 +89,9 @@ public class RecipeListActivity extends AppCompatActivity {
                     Bundle bundle = new Bundle();
                     bundle.putParcelable("recipe", recipe);
                     bundle.putParcelableArray("ingredients", ingreds);
+                    if (steps != null) {
+                        bundle.putParcelableArray("steps", steps);
+                    }
 //                    recipeDetailListIntent.putExtra("recipe", recipe);
                     recipeDetailListIntent.putExtras(bundle);
 

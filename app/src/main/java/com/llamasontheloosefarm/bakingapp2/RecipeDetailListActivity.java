@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.llamasontheloosefarm.bakingapp2.data.Recipe;
 import com.llamasontheloosefarm.bakingapp2.data.RecipeIngredient;
+import com.llamasontheloosefarm.bakingapp2.data.RecipeStep;
 
 import org.w3c.dom.Text;
 
@@ -44,23 +45,36 @@ public class RecipeDetailListActivity extends AppCompatActivity {
         String recipeName;
         Recipe selectedRecipe;
         Parcelable[] parcelableIngreds;
-        ArrayList<RecipeIngredient> selectedIngreds = new ArrayList<>();
+        Parcelable[] parcelableSteps;
+        ArrayList<Object> selectedIngreds = new ArrayList<>();
 
         Intent fromIntent = getIntent();
 
         if (fromIntent.hasExtra("recipe")) {
             selectedRecipe = fromIntent.getParcelableExtra("recipe");
+            setTitle(selectedRecipe.getName());
 
         } else {
             selectedRecipe = null;
         }
 
+
         if (fromIntent.hasExtra("ingredients")) {
             parcelableIngreds = fromIntent.getParcelableArrayExtra("ingredients");
             if (parcelableIngreds.length != 0) {
-                selectedIngreds = new ArrayList<>();
+                selectedIngreds.add("Ingredients");
                 for (Parcelable ingred : parcelableIngreds) {
                     selectedIngreds.add((RecipeIngredient) ingred);
+                }
+            }
+        }
+
+        if (fromIntent.hasExtra("steps")) {
+            parcelableSteps = fromIntent.getParcelableArrayExtra("steps");
+            if (parcelableSteps.length != 0) {
+                selectedIngreds.add("Steps");
+                for (Parcelable step : parcelableSteps) {
+                    selectedIngreds.add((RecipeStep) step);
                 }
             }
         }

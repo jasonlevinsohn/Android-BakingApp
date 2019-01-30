@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView android:layout_width="match_parent" android:layout_height="match_parent"
+<ScrollView
+    android:background="@color/primary"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@color/primary"
         android:layout_width="match_parent"
-        xmlns:tools="http://schemas.android.com/tools"
         xmlns:android="http://schemas.android.com/apk/res/android">
-
-        <TextView
-            android:text="Ingredients"
-            android:paddingStart="8dp"
-            android:paddingBottom="16dp"
-            android:paddingTop="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
         <android.support.v7.widget.RecyclerView
             xmlns:android="http://schemas.android.com/apk/res/android"

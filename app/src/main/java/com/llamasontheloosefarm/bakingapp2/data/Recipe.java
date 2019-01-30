@@ -31,6 +31,13 @@ public class Recipe implements Parcelable {
         this.ingredients = ingredients;
     }
 
+    public Recipe(int id, String name, RecipeIngredient[] ingredients, RecipeStep[] steps) {
+        this.id = id;
+        this.name = name;
+        this.ingredients = ingredients;
+        this.steps = steps;
+    }
+
     public int getId() {
         return id;
     }
@@ -64,15 +71,19 @@ public class Recipe implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeInt(this.id);
         parcel.writeString(this.name);
-        parcel.writeTypedArray(this.ingredients, 0);
+//        parcel.writeTypedArray(this.ingredients, 0);
+//        parcel.writeTypedArray(this.steps, 0);
     }
 
     protected Recipe(Parcel in) {
         this.id = in.readInt();
         this.name = in.readString();
-        if (this.ingredients != null) {
-            in.readTypedArray(this.ingredients, RecipeIngredient.CREATOR);
-        }
+//        if (this.ingredients != null) {
+//            in.readTypedArray(this.ingredients, RecipeIngredient.CREATOR);
+//        }
+//        if (this.steps != null) {
+//            in.readTypedArray(this.steps, RecipeStep.CREATOR);
+//        }
     }
 
     public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
