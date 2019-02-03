@@ -1,6 +1,7 @@
 package com.llamasontheloosefarm.bakingapp2;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -32,10 +33,12 @@ public class IngredientStepAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     private Recipe mRecipe;
     private ArrayList<Object> mIngredientsAndSteps;
+    final private Context mContext;
 
 
-    public IngredientStepAdapter(Recipe recipe, ArrayList<Object> ingredientsAndSteps) {
+    public IngredientStepAdapter(Context context, Recipe recipe, ArrayList<Object> ingredientsAndSteps) {
         mRecipe = recipe;
+        mContext = context;
         mIngredientsAndSteps = ingredientsAndSteps;
     }
 
@@ -68,6 +71,14 @@ public class IngredientStepAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                             Timber.d("YOU ARE CLICKING ON A STEP %d", position);
                             try {
                                 RecipeStep step = (RecipeStep) mIngredientsAndSteps.get(position);
+
+                                Context IngredientStepAdapterContext = mContext;
+                                Class dest = StepsMainActivity.class;
+
+                                Intent activityStepsMainIntent = new Intent(IngredientStepAdapterContext, dest);
+                                mContext.startActivity(activityStepsMainIntent);
+
+                                // TODO: We are just trying to get this thing going here.
                                 // TODO Look into fragments before going any further
                                 Timber.d("Step: %d %s ", step.getId(), step.getDescription());
                             } catch (Exception e) {

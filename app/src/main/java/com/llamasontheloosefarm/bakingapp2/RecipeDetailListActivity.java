@@ -1,5 +1,7 @@
 package com.llamasontheloosefarm.bakingapp2;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -80,7 +82,10 @@ public class RecipeDetailListActivity extends AppCompatActivity {
         }
 
         if (!selectedIngreds.isEmpty()) {
-            mIngredientAdapter = new IngredientStepAdapter(selectedRecipe, selectedIngreds);
+            Context context = RecipeDetailListActivity.this;
+            Activity activity = RecipeDetailListActivity.this;
+
+            mIngredientAdapter = new IngredientStepAdapter(context, selectedRecipe, selectedIngreds);
         }
 
         mIngredientRecyclerView.setAdapter(mIngredientAdapter);
