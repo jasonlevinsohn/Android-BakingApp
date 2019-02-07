@@ -49,6 +49,7 @@ public class RecipeDetailListActivity extends AppCompatActivity {
         Parcelable[] parcelableIngreds;
         Parcelable[] parcelableSteps;
         ArrayList<Object> selectedIngreds = new ArrayList<>();
+        ArrayList<RecipeStep> stepsList = new ArrayList<>();
 
         Intent fromIntent = getIntent();
 
@@ -77,6 +78,7 @@ public class RecipeDetailListActivity extends AppCompatActivity {
                 selectedIngreds.add("Steps");
                 for (Parcelable step : parcelableSteps) {
                     selectedIngreds.add((RecipeStep) step);
+                    stepsList.add((RecipeStep) step);
                 }
             }
         }
@@ -85,7 +87,7 @@ public class RecipeDetailListActivity extends AppCompatActivity {
             Context context = RecipeDetailListActivity.this;
             Activity activity = RecipeDetailListActivity.this;
 
-            mIngredientAdapter = new IngredientStepAdapter(context, selectedRecipe, selectedIngreds);
+            mIngredientAdapter = new IngredientStepAdapter(context, selectedRecipe, selectedIngreds, stepsList);
         }
 
         mIngredientRecyclerView.setAdapter(mIngredientAdapter);

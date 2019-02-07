@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <FrameLayout
-        android:id="@+id/head_container"
+        android:id="@+id/single_step_container"
         android:layout_width="match_parent"
         android:scaleType="centerInside"
         android:layout_height="100dp" />

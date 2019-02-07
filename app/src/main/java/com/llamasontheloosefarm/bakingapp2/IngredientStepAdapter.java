@@ -2,6 +2,7 @@ package com.llamasontheloosefarm.bakingapp2;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -33,13 +34,15 @@ public class IngredientStepAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     private Recipe mRecipe;
     private ArrayList<Object> mIngredientsAndSteps;
+    private ArrayList<RecipeStep> mStepList;
     final private Context mContext;
 
 
-    public IngredientStepAdapter(Context context, Recipe recipe, ArrayList<Object> ingredientsAndSteps) {
+    public IngredientStepAdapter(Context context, Recipe recipe, ArrayList<Object> ingredientsAndSteps, ArrayList<RecipeStep> steps) {
         mRecipe = recipe;
         mContext = context;
         mIngredientsAndSteps = ingredientsAndSteps;
+        mStepList = steps;
     }
 
     @NonNull
@@ -71,14 +74,20 @@ public class IngredientStepAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                             Timber.d("YOU ARE CLICKING ON A STEP %d", position);
                             try {
                                 RecipeStep step = (RecipeStep) mIngredientsAndSteps.get(position);
+                                int stepIndex = step.getId();
 
                                 Context IngredientStepAdapterContext = mContext;
                                 Class dest = StepsMainActivity.class;
 
                                 Intent activityStepsMainIntent = new Intent(IngredientStepAdapterContext, dest);
+                                Bundle singleStepBundle = new Bundle();
+                                singleStepBundle.putInt("stepIndex", stepIndex);
+                                singleStepBundle.putParcelableArrayList("stepsList", mStepList);
+//                                singleStepBundle.putParcelable("step", step);
+                                activityStepsMainIntent.putExtras(singleStepBundle);
                                 mContext.startActivity(activityStepsMainIntent);
 
-                                // TODO: We are just trying to get this thing going here.
+                                // TODO: Ok we need to send the step along to the next activity;
                                 // TODO Look into fragments before going any further
                                 Timber.d("Step: %d %s ", step.getId(), step.getDescription());
                             } catch (Exception e) {
