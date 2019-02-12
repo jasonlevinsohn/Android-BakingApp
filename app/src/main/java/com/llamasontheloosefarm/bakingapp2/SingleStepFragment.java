@@ -40,9 +40,17 @@ public class SingleStepFragment extends Fragment {
 
         // Get a reference to the Test Text View in the fragment
         final TextView testTV = (TextView) rootView.findViewById(R.id.single_step_tv_tester);
+        TextView mediaTV = (TextView) rootView.findViewById(R.id.tv_video_url);
+        TextView longDescTV = (TextView) rootView.findViewById(R.id.tv_long_description);
         mStep = mStepList.get(mStepIndex);
         if (mStep != null) {
+            if(!mStep.getVideoURL().isEmpty()) {
+                mediaTV.setText(mStep.getVideoURL());
+            } else if (!mStep.getThumbnailURL().isEmpty()) {
+                mediaTV.setText(mStep.getThumbnailURL());
+            }
             testTV.setText(mStep.getShortDescription());
+            longDescTV.setText(mStep.getDescription());
         } else {
             testTV.setText("You and me Hommie");
         }
