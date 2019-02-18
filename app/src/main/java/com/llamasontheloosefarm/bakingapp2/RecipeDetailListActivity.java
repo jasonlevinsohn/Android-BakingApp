@@ -41,6 +41,7 @@ public class RecipeDetailListActivity extends AppCompatActivity {
 //        setContentView(R.layout.recipe_detail_list);
         setContentView(R.layout.master_recipe_ingredient_step);
         ButterKnife.bind(this);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (findViewById(R.id.step_linear_layout) != null) {
             mTwoPane = true;
@@ -122,7 +123,13 @@ public class RecipeDetailListActivity extends AppCompatActivity {
 
     }
 
-//    @Override
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
+
+    //    @Override
 //    public void onStepSelected(int position) {
 //        Timber.d("Step position clicked: %d", position);
 //    }

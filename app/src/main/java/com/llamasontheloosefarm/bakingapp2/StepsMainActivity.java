@@ -22,6 +22,7 @@ public class StepsMainActivity  extends AppCompatActivity {
     Parcelable[] parcelableStepList = null;
     int mStepIndex;
     ArrayList<RecipeStep> mStepList;
+    RecipeStep theStep;
 
     FragmentManager fragmentManager;
     SingleStepFragment singleStepFragment;
@@ -60,12 +61,22 @@ public class StepsMainActivity  extends AppCompatActivity {
                         .commit();
 //                }
 
-
+                theStep = mStepList.get(mStepIndex);
+                if (theStep != null) {
+                    setTitle(theStep.getShortDescription());
+                }
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             }
 
         }
 
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 
     @Override
