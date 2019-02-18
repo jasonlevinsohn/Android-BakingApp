@@ -17,7 +17,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".RecipeDetailListActivity"></activity>
-        <activity android:name=".StepsMainActivity"></activity>
+        <activity
+            android:configChanges="orientation|screenSize"
+            android:name=".StepsMainActivity">
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

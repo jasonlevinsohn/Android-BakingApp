@@ -40,6 +40,9 @@ dependencies {
     // Recycler View
     implementation 'com.android.support:recyclerview-v7:27.1.1'
 
+    // Exo Player
+    implementation 'com.google.android.exoplayer:exoplayer:r2.2.0'
+
 
     // Getting compile errors when trying to implement these.
     // Butterknife for Binding and what not

@@ -1,6 +1,8 @@
 package com.llamasontheloosefarm.bakingapp2;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.os.PersistableBundle;
@@ -13,7 +15,6 @@ import com.llamasontheloosefarm.bakingapp2.data.RecipeStep;
 
 import java.util.ArrayList;
 
-import timber.log.Timber;
 
 public class StepsMainActivity  extends AppCompatActivity {
 
@@ -29,6 +30,7 @@ public class StepsMainActivity  extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_steps_main);
+//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
 
         // Only create a new fragment if there are no previously saved fragments.
         if (savedInstanceState == null) {
@@ -66,4 +68,17 @@ public class StepsMainActivity  extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        boolean isLandscape = false;
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            isLandscape = true;
+        } else {
+            isLandscape = false;
+        }
+        if (singleStepFragment != null) {
+            singleStepFragment.changeOrientationConfig(isLandscape, newConfig);
+        }
+    }
 }
