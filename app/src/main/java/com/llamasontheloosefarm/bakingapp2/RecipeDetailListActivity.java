@@ -3,8 +3,10 @@ package com.llamasontheloosefarm.bakingapp2;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +14,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.llamasontheloosefarm.bakingapp2.data.Recipe;
 import com.llamasontheloosefarm.bakingapp2.data.RecipeIngredient;
 import com.llamasontheloosefarm.bakingapp2.data.RecipeStep;
@@ -33,6 +36,9 @@ public class RecipeDetailListActivity extends AppCompatActivity {
     private RecyclerView mIngredientRecyclerView;
     private boolean mTwoPane = false;
 //    MasterListFragment masterListFragment;
+
+    SharedPreferences mPrefs;
+    SharedPreferences.Editor mEditor;
 
 
     @Override
@@ -66,6 +72,12 @@ public class RecipeDetailListActivity extends AppCompatActivity {
         Parcelable[] parcelableSteps;
         ArrayList<Object> selectedIngreds = new ArrayList<>();
         ArrayList<RecipeStep> stepsList = new ArrayList<>();
+        ArrayList<RecipeIngredient> ingredsForPreferences = new ArrayList<>();
+
+        // Store recipe and ingredients for use in the widget.
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mPrefs.edit();
+
 
         Intent fromIntent = getIntent();
 
@@ -73,6 +85,8 @@ public class RecipeDetailListActivity extends AppCompatActivity {
         if (fromIntent.hasExtra("recipe")) {
             selectedRecipe = fromIntent.getParcelableExtra("recipe");
             setTitle(selectedRecipe.getName());
+            mEditor.putString("recipe_name", selectedRecipe.getName());
+
         } else {
             selectedRecipe = null;
         }
@@ -84,7 +98,18 @@ public class RecipeDetailListActivity extends AppCompatActivity {
                 selectedIngreds.add("Ingredients");
                 for (Parcelable ingred : parcelableIngreds) {
                     selectedIngreds.add((RecipeIngredient) ingred);
+                    ingredsForPreferences.add((RecipeIngredient) ingred);
                 }
+
+                // Insert ingredients into Shared Preferences
+                try {
+                    Gson gson = new Gson();
+                    String jsonText = gson.toJson(ingredsForPreferences);
+                    mEditor.putString("ingredients", jsonText);
+                } catch(Exception e) {
+                    e.printStackTrace();
+                }
+
             }
         }
 
@@ -98,6 +123,8 @@ public class RecipeDetailListActivity extends AppCompatActivity {
                 }
             }
         }
+
+        mEditor.commit();
 
         masterListFrag.setSelectedIngreds(selectedIngreds);
         masterListFrag.setStepsList(stepsList);
