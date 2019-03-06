@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 import com.llamasontheloosefarm.bakingapp2.data.Recipe;
 import com.llamasontheloosefarm.bakingapp2.data.RecipeIngredient;
 import com.llamasontheloosefarm.bakingapp2.data.RecipeStep;
+import com.llamasontheloosefarm.bakingapp2.utilities.IngredientsWidgetService;
 
 import org.w3c.dom.Text;
 
@@ -125,6 +126,7 @@ public class RecipeDetailListActivity extends AppCompatActivity {
         }
 
         mEditor.commit();
+        IngredientsWidgetService.startActionUpdateIngredientsList(this);
 
         masterListFrag.setSelectedIngreds(selectedIngreds);
         masterListFrag.setStepsList(stepsList);
