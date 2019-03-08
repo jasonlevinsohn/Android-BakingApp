@@ -26,7 +26,7 @@ public class IngredientsWidgetProvider extends AppWidgetProvider {
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, String recipeName,
                                 int appWidgetId) {
 
-//        mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
 //        String recipeName = mPrefs.getString("recipe_name", "No Recipe Selected");
 //        RecipeIngredient[] ingredients;
 
@@ -48,6 +48,10 @@ public class IngredientsWidgetProvider extends AppWidgetProvider {
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.ingredients_widget);
         views.setTextViewText(R.id.appwidget_text, recipeName);
+
+        // Set List View
+        Intent listViewIntent = new Intent(context, ListViewWidgetService.class);
+        views.setRemoteAdapter(R.id.widget_ingredient_list_view, listViewIntent);
 
         // Launch Click Handler to open the app from the widget
         Intent appStartIntent = new Intent(context, RecipeListActivity.class);

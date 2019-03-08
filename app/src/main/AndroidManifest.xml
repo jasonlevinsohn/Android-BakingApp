@@ -35,6 +35,9 @@
         </receiver>
 
         <service android:name=".utilities.IngredientsWidgetService" />
+        <service
+            android:name=".ListViewWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
     </application>
 
 </manifest>

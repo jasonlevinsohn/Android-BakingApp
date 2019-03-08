@@ -10,6 +10,7 @@ import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 
 import com.llamasontheloosefarm.bakingapp2.IngredientsWidgetProvider;
+import com.llamasontheloosefarm.bakingapp2.R;
 
 public class IngredientsWidgetService  extends IntentService {
 
@@ -44,6 +45,9 @@ public class IngredientsWidgetService  extends IntentService {
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(this, IngredientsWidgetProvider.class));
 
+        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_ingredient_list_view);
+
+        // Update all the widgets
         IngredientsWidgetProvider.updateIngredientsWidget(this, appWidgetManager, recipeName, appWidgetIds);
     }
 }
