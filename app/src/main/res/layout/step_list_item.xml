@@ -2,7 +2,6 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@drawable/list_item_selector"
     android:layout_marginTop="4dp"
@@ -18,8 +17,7 @@
         android:textColor="@color/primary_text"
         android:layout_marginStart="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_step_short_desc"
@@ -27,7 +25,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:textColor="@color/primary_text"
-        tools:text="cups"
         app:layout_constraintBottom_toBottomOf="@+id/tv_step_number"
         app:layout_constraintStart_toEndOf="@+id/tv_step_number"
         app:layout_constraintTop_toTopOf="@+id/tv_step_number" />

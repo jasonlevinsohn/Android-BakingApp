@@ -2,7 +2,6 @@
 <!-- Fragment layout that displays a single step of a recipe -->
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -11,20 +10,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_width="match_parent">
-
-        <!--<TextView xmlns:tools="http://schemas.android.com/tools"-->
-            <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
-            <!--tools:text="Fragment Step Text View"-->
-            <!--android:text="Some stuff"-->
-            <!--android:textSize="30sp"-->
-            <!--android:id="@+id/single_step_tv_tester"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content" />-->
-
-        <!--<View-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:background="@color/divider"-->
-            <!--android:layout_height="1dp" />-->
 
             <com.google.android.exoplayer2.ui.SimpleExoPlayerView
                 android:id="@+id/playerView"
@@ -39,19 +24,8 @@
                 android:layout_height="3dp" />
 
 
-            <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:textSize="20sp"-->
-                <!--android:id="@+id/tv_video_url"-->
-                <!--android:paddingTop="20dp"-->
-                <!--android:paddingBottom="20dp"-->
-                <!--android:background="@color/divider"-->
-                <!--tools:text="The Video URL"-->
-                <!--android:layout_height="wrap_content" />-->
-
             <TextView
                 android:id="@+id/tv_long_description"
-                tools:text="The long description"
                 android:textSize="20sp"
                 android:background="@color/primary_light"
                 android:textColor="@color/primary_text"

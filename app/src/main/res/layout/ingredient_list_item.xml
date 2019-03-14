@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="horizontal"
     android:layout_marginTop="4dp"
@@ -14,71 +12,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/primary_text"
-        android:layout_marginStart="12dp"
-        tools:text="2" />
+        android:layout_marginStart="12dp" />
 
     <TextView
         android:id="@+id/tv_measure_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:textColor="@color/primary_text"
-        tools:text="cups" />
+        android:textColor="@color/primary_text" />
 
     <TextView
         android:id="@+id/tv_ingredient_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/primary_text"
-        android:layout_marginStart="16dp"
-        tools:text="Black Peppa again and again and again and one more time" />
-
+        android:layout_marginStart="16dp" />
 
 </LinearLayout>
 
-<!--<android.support.constraint.ConstraintLayout-->
-    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--xmlns:tools="http://schemas.android.com/tools"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_marginTop="4dp"-->
-    <!--android:layout_marginBottom="4dp"-->
-    <!--android:layout_height="wrap_content">-->
-
-    <!--<TextView-->
-        <!--android:id="@+id/tv_quantity_text"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:textColor="@color/primary_text"-->
-        <!--android:layout_marginStart="12dp"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--tools:text="2" />-->
-
-    <!--<TextView-->
-        <!--android:id="@+id/tv_measure_text"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginStart="4dp"-->
-        <!--android:textColor="@color/primary_text"-->
-        <!--tools:text="cups"-->
-        <!--app:layout_constraintBottom_toBottomOf="@+id/tv_quantity_text"-->
-        <!--app:layout_constraintStart_toEndOf="@+id/tv_quantity_text"-->
-        <!--app:layout_constraintTop_toTopOf="@+id/tv_quantity_text" />-->
-
-    <!--<TextView-->
-        <!--android:id="@+id/tv_ingredient_text"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:textColor="@color/primary_text"-->
-        <!--android:layout_marginStart="16dp"-->
-        <!--app:layout_constrainedWidth="true"-->
-        <!--app:layout_constraintRight_toRightOf="parent"-->
-        <!--app:layout_constraintStart_toEndOf="@id/tv_measure_text"-->
-        <!--app:layout_constraintBottom_toBottomOf="@id/tv_measure_text"-->
-        <!--app:layout_constraintTop_toTopOf="@id/tv_measure_text"-->
-        <!--tools:text="Black Peppa again and again and again and one more time" />-->
-
-
-
-<!--</android.support.constraint.ConstraintLayout>-->

@@ -2,4 +2,6 @@
     <string name="app_name">Baking App 2</string>
     <string name="appwidget_text">Recipe</string>
     <string name="add_widget">Add widget</string>
+    <string name="sample_text">Sample Text</string>
+    <string name="sample_recipe_text">Recipe</string>
 </resources>

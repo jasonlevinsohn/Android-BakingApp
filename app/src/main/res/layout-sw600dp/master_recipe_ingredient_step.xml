@@ -30,13 +30,6 @@
             android:scaleType="centerInside"
             android:layout_height="match_parent" />
 
-        <!--<FrameLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:id="@+id/fragment_step_description"-->
-            <!--android:scaleType="centerInside"-->
-            <!--android:layout_height="200dp" />-->
-
-
     </LinearLayout>
 
 </LinearLayout>
